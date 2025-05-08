@@ -28,16 +28,10 @@ export const generateImage = async (prompt: string, clientType: string): Promise
     return '/placeholder-image.jpg';
   }
   
-  // Set client name based on client type
-  let clientName = '';
-  
-  if (clientType === 'Fashion') {
-    clientName = 'LoveSummer';
-  } else if (clientType === 'F&B') {
-    clientName = 'GoodFood';
-  } else if (clientType === 'Barbershop') {
-    clientName = 'GentlemanPalace';
-  }
+  // Set client name based on client type - not used in this function but kept for reference
+  // const clientName = clientType === 'Fashion' ? 'LoveSummer' : 
+  //                    clientType === 'F&B' ? 'GoodFood' : 
+  //                    clientType === 'Barbershop' ? 'GentlemanPalace' : '';
   
   // Use the original prompt without logo instructions
   const enhancedPrompt = prompt;
@@ -72,27 +66,31 @@ export const generateImage = async (prompt: string, clientType: string): Promise
     
     console.error('No image data in response');
     return '/placeholder-image.jpg';
-  } catch (error: any) {
-    console.error('Error generating image:', error);
+  } catch (error) {
+    const handleError = (err: unknown) => {
+      console.error('Error generating image:', err);
+      
+      // Log detailed error information
+      if (err && typeof err === 'object' && 'response' in err && err.response) {
+        console.error('Error response:', (err.response as any).data);
+        console.error('Error status:', (err.response as any).status);
+      } else if (err instanceof Error) {
+        console.error('Error message:', err.message);
+      }
+      
+      // For demo purposes, return client-specific placeholder images as fallback
+      if (clientType === 'Fashion') {
+        return 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1000&auto=format&fit=crop';
+      } else if (clientType === 'F&B') {
+        return 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=1000&auto=format&fit=crop';
+      } else if (clientType === 'Barbershop') {
+        return 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1000&auto=format&fit=crop';
+      } else {
+        return 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=1000&auto=format&fit=crop';
+      }
+    };
     
-    // Log detailed error information
-    if (error.response) {
-      console.error('Error response:', error.response.data);
-      console.error('Error status:', error.response.status);
-    } else if (error.message) {
-      console.error('Error message:', error.message);
-    }
-    
-    // For demo purposes, return client-specific placeholder images as fallback
-    if (clientType === 'Fashion') {
-      return 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1000&auto=format&fit=crop';
-    } else if (clientType === 'F&B') {
-      return 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=1000&auto=format&fit=crop';
-    } else if (clientType === 'Barbershop') {
-      return 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1000&auto=format&fit=crop';
-    } else {
-      return 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=1000&auto=format&fit=crop';
-    }
+    return handleError(error);
   }
 };
 
@@ -100,21 +98,18 @@ export const generateImage = async (prompt: string, clientType: string): Promise
  * Get a placeholder image based on the prompt content
  * Uses local images to avoid external URL issues
  */
-const getPlaceholderImage = (prompt: string): string => {
-  // Use a single placeholder image for all types to avoid missing file errors
-  return '/placeholder-image.jpg';
-  
-  /* Uncomment this when you have all placeholder images ready
-  if (prompt.toLowerCase().includes('fashion')) {
+export const getPlaceholderImage = (promptText: string): string => {
+  // Return a placeholder image based on the prompt or client type
+  if (promptText.toLowerCase().includes('fashion') || promptText.toLowerCase().includes('clothing')) {
     return '/placeholders/fashion.jpg';
-  } else if (prompt.toLowerCase().includes('f&b') || prompt.toLowerCase().includes('food')) {
+  } else if (promptText.toLowerCase().includes('food') || promptText.toLowerCase().includes('restaurant')) {
     return '/placeholders/food.jpg';
-  } else if (prompt.toLowerCase().includes('barbershop') || prompt.toLowerCase().includes('barber')) {
+  } else if (promptText.toLowerCase().includes('barber') || promptText.toLowerCase().includes('haircut')) {
     return '/placeholders/barbershop.jpg';
-  } else {
-    return '/placeholder-image.jpg';
   }
-  */
+  
+  // Default placeholder
+  return '/placeholder-image.jpg';
 };
 
 /**

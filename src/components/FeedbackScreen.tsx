@@ -61,7 +61,7 @@ const FeedbackScreen: React.FC = () => {
           
           <h3 className="font-semibold text-blue-800 mb-3">Client Feedback:</h3>
           <div className="italic text-blue-800 whitespace-pre-line">
-            "{state.feedbackMessage}"
+            &quot;{state.feedbackMessage}&quot;
           </div>
         </div>
         

@@ -4,7 +4,6 @@ import React from 'react';
 import { useAppContext } from '@/context/AppContext';
 import { generateFeedback } from '@/services/openai';
 import Timer from './Timer';
-import Image from 'next/image';
 
 const InstagramMockup: React.FC = () => {
   const { state, updateState } = useAppContext();

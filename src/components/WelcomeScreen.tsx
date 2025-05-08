@@ -30,7 +30,7 @@ const WelcomeScreen: React.FC = () => {
         
         <div className="mb-6">
           <label htmlFor="userName" className="block text-sm font-medium text-gray-700 mb-2">
-            What's your name?
+            What&apos;s your name?
           </label>
           <input
             type="text"

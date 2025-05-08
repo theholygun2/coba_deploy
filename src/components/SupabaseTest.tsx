@@ -22,11 +22,11 @@ const SupabaseTest: React.FC = () => {
     
     try {
       // Generate the image and get the Supabase URL
-      const generatedImageUrl = await generateImage(prompt);
+      const generatedImageUrl = await generateImage(prompt, 'Fashion'); // Default to Fashion as client type
       setImageUrl(generatedImageUrl);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error in image generation workflow:', err);
-      setError(err.message || 'Failed to generate image');
+      setError(err instanceof Error ? err.message : 'Failed to generate image');
       setImageUrl('/placeholder-image.jpg');
     } finally {
       setIsLoading(false);
@@ -106,7 +106,7 @@ const SupabaseTest: React.FC = () => {
           <p>This component tests the complete image generation workflow:</p>
           <ol className="list-decimal ml-5 mt-2 space-y-1">
             <li>Takes a prompt from the user</li>
-            <li>Sends it to OpenAI's gpt-image-1 model</li>
+            <li>Sends it to OpenAI&apos;s gpt-image-1 model</li>
             <li>Downloads the generated image</li>
             <li>Uploads it to Supabase Storage</li>
             <li>Displays the Supabase-hosted image</li>

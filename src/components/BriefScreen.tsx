@@ -8,8 +8,8 @@ const BriefScreen: React.FC = () => {
 
   const clientBriefs: Record<string, string> = {
     'LoveSummer': "Hey! I run a local fashion brand for women who love feeling stylish and empowered. Can you create a post that promotes our new summer collection? We want it to feel elegant, fun, and modern.",
-    'GoodFood': "Yo! I'm launching a new spicy ramen and I want it to go viral. Make something bold and mouth-watering. Don't hold back – the caption should slap. This is for flavor lovers.",
-    'Gentleman Palace': "Hello. I own a minimalist barbershop focused on precision and clean grooming. I need a social media post for our \"Fresh Fade Friday\" promo. Keep it sharp, clear, and professional."
+    'GoodFood': "Yo! I&apos;m launching a new spicy ramen and I want it to go viral. Make something bold and mouth-watering. Don&apos;t hold back – the caption should slap. This is for flavor lovers.",
+    'Gentleman Palace': "Hello. I own a minimalist barbershop focused on precision and clean grooming. I need a social media post for our &quot;Fresh Fade Friday&quot; promo. Keep it sharp, clear, and professional."
   };
 
   const handleStartCampaign = () => {

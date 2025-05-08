@@ -49,7 +49,7 @@ export const uploadImageToSupabase = async (imageUrl: string, fileName: string):
     console.log('Public URL generated:', publicUrlData.publicUrl);
     
     return publicUrlData.publicUrl;
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error uploading image to Supabase:', error);
     throw error;
   }

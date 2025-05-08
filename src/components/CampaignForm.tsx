@@ -191,23 +191,23 @@ The image should be vibrant, visually striking, and suitable for social media ma
         <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 mt-16">
           <h1 className="text-3xl font-bold text-blue-600 mb-2">Campaign Form</h1>
           <p className="text-gray-600 mb-2">
-            Fill out the details for {state.clientName}'s {state.clientType} campaign
+            Fill out the details for {state.clientName}&apos;s {state.clientType} campaign
           </p>
           
           {/* Client Brief Section */}
           <div className="bg-gray-100 p-4 rounded-lg border-l-4 border-blue-500 italic mb-6">
             <h3 className="font-semibold text-gray-800 mb-1 not-italic">Client Brief:</h3>
             {state.clientName === 'LoveSummer' && (
-              <p>"Hey! I run a local fashion brand for women who love feeling stylish and empowered. Can you create a post that promotes our new summer collection? We want it to feel elegant, fun, and modern."</p>
+              <p>&quot;Hey! I run a local fashion brand for women who love feeling stylish and empowered. Can you create a post that promotes our new summer collection? We want it to feel elegant, fun, and modern.&quot;</p>
             )}
             {state.clientName === 'GoodFood' && (
-              <p>"Yo! I'm launching a new spicy ramen and I want it to go viral. Make something bold and mouth-watering. Don't hold back – the caption should slap. This is for flavor lovers."</p>
+              <p>&quot;Yo! I&apos;m launching a new spicy ramen and I want it to go viral. Make something bold and mouth-watering. Don&apos;t hold back – the caption should slap. This is for flavor lovers.&quot;</p>
             )}
             {state.clientName === 'Gentleman Palace' && (
-              <p>"Hello. I own a minimalist barbershop focused on precision and clean grooming. I need a social media post for our \"Fresh Fade Friday\" promo. Keep it sharp, clear, and professional."</p>
+              <p>&quot;Hello. I own a minimalist barbershop focused on precision and clean grooming. I need a social media post for our &quot;Fresh Fade Friday&quot; promo. Keep it sharp, clear, and professional.&quot;</p>
             )}
             {!['LoveSummer', 'GoodFood', 'Gentleman Palace'].includes(state.clientName) && (
-              <p>"I need a compelling social media post for my {state.clientType} business. Please create something that matches our brand identity and resonates with our target audience."</p>
+              <p>&quot;I need a compelling social media post for my {state.clientType} business. Please create something that matches our brand identity and resonates with our target audience.&quot;</p>
             )}
           </div>
           
