@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { generateImage } from '@/services/openai';
+import { uploadImageToSupabase } from '@/services/supabase';
+import Image from 'next/image';
 
 const SupabaseTest: React.FC = () => {
   const [prompt, setPrompt] = useState('');
@@ -85,11 +87,13 @@ const SupabaseTest: React.FC = () => {
           <div className="mb-6">
             <h2 className="text-lg font-semibold mb-2">Generated Image:</h2>
             <div className="w-full h-64 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
-              <img 
+              <Image 
                 src={imageUrl} 
                 alt="Generated image" 
                 className="w-full h-full object-contain"
-                onError={(e) => {
+                width={500}
+                height={256}
+                onError={(e: any) => {
                   console.error('Error loading image from URL:', imageUrl);
                   e.currentTarget.src = '/placeholder-image.jpg';
                   setError('Failed to load the generated image');

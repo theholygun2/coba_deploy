@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAppContext } from '@/context/AppContext';
 import { generateCaption } from '@/services/openai';
+import Image from 'next/image';
 import Timer from './Timer';
 
 const CaptionInput: React.FC = () => {
@@ -80,6 +81,7 @@ const CaptionInput: React.FC = () => {
   useEffect(() => {
     // Auto-generate caption suggestion when component mounts
     generateSuggestedCaption();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleUseSuggestion = () => {
@@ -113,10 +115,12 @@ const CaptionInput: React.FC = () => {
             <p className="text-sm text-gray-500 mb-2">Generated Image Preview:</p>
             <div className="w-full h-64 bg-gray-200 rounded-md flex items-center justify-center overflow-hidden">
               {state.generatedImage ? (
-                <img 
+                <Image 
                   src={state.generatedImage} 
                   alt="Generated campaign image" 
                   className="w-full h-full object-cover"
+                  width={500}
+                  height={400}
                   onError={(e) => {
                     console.error('Error loading image in CaptionInput');
                     e.currentTarget.src = '/placeholder-image.jpg';

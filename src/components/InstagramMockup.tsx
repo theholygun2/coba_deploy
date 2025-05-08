@@ -4,6 +4,7 @@ import React from 'react';
 import { useAppContext } from '@/context/AppContext';
 import { generateFeedback } from '@/services/openai';
 import Timer from './Timer';
+import Image from 'next/image';
 
 const InstagramMockup: React.FC = () => {
   const { state, updateState } = useAppContext();
@@ -125,11 +126,13 @@ Overall, this is excellent work that will help us achieve our marketing goals. T
           <div className="flex items-center p-3 border-b border-gray-200">
             <div className="w-8 h-8 rounded-full overflow-hidden">
               {state.clientName ? (
-                <img 
+                <Image 
                   src={`/clients/${state.clientName.toLowerCase()}.png`} 
                   alt={`${state.clientName} logo`}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
+                  width={32}
+                  height={32}
+                  onError={(e: any) => {
                     console.error(`Error loading client logo: ${state.clientName}`); 
                     e.currentTarget.style.display = 'none';
                     const parent = e.currentTarget.parentElement;
@@ -160,11 +163,13 @@ Overall, this is excellent work that will help us achieve our marketing goals. T
           <div className="aspect-w-1 aspect-h-1 bg-gray-100 relative">
             {state.generatedImage ? (
               <div className="w-full h-full">
-                <img
+                <Image
                   src={state.generatedImage}
                   alt="Generated campaign image"
                   className="w-full h-full object-cover"
-                  onError={(e) => {
+                  width={500}
+                  height={500}
+                  onError={(e: any) => {
                     console.error('Error loading image in Instagram mockup');
                     // Use client-specific fallback images from Unsplash
                     let fallbackUrl = '/placeholder-image.jpg';

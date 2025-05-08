@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useAppContext } from '@/context/AppContext';
+import Image from 'next/image';
 
 const FeedbackScreen: React.FC = () => {
   const { state, resetState } = useAppContext();
@@ -33,11 +34,13 @@ const FeedbackScreen: React.FC = () => {
           <div className="flex items-center mb-4">
             <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
               {state.clientName ? (
-                <img 
+                <Image 
                   src={`/clients/${state.clientName.toLowerCase()}.png`} 
                   alt={`${state.clientName} logo`}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
+                  width={48}
+                  height={48}
+                  onError={(e: any) => {
                     console.error(`Error loading client logo: ${state.clientName}`); 
                     e.currentTarget.style.display = 'none';
                     const parent = e.currentTarget.parentElement;
